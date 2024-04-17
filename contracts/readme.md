@@ -1,4 +1,5 @@
-# Simple Cryptocurrency Wallet
+# Metacrafters ATM
+
 
 This is a basic cryptocurrency wallet implemented in Solidity and JavaScript. It allows you to deposit and withdraw Ethereum (ETH) and also provides conversion functionality to display your account balance in INR and USD.
 
