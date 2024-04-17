@@ -9,7 +9,9 @@ contract Assessment {
 
     event Deposit(uint256 amount);
     event Withdraw(uint256 amount);
-
+    event Deposit2(uint256 amount);
+    event Withdraw2(uint256 amount);
+    
     constructor(uint initBalance) payable {
         owner = payable(msg.sender);
         balance = initBalance;
@@ -34,6 +36,42 @@ contract Assessment {
         // emit the event
         emit Deposit(_amount);
     }
+
+    function deposit2(uint256 _amount) public payable {
+        
+        uint256 oldbalance = balance;
+        require(msg.sender == owner, "You are not the owner of this account");
+
+        balance = balance + _amount;
+        uint256 amount = balance;
+        assert(balance==oldbalance+_amount);
+        emit Deposit2(amount);
+
+    }
+
+    function withdraw2(uint256 _amount) public payable {
+        
+        uint256 oldbalance = balance;
+        require(msg.sender == owner, "You are not the owner of this account");
+
+        balance = balance + _amount;
+        uint256 amount = balance;
+        assert(balance==oldbalance+_amount);
+        emit Withdraw2(amount);
+
+    }
+    //FUNCTION TO DISPLAY THE ETH BALANCE IN INR
+    function cvt2INR() view public returns(uint){
+        uint amount = getBalance() * 136234 ;
+        return amount;
+        
+    }
+    //FUNCTION TO DISPLAY THE ETH BALANCE IN USD
+    function cvt2USD() view public returns (uint){
+        uint amount = getBalance() * 1647;
+        return amount;
+    }
+
 
     // custom error
     error InsufficientBalance(uint256 balance, uint256 withdrawAmount);
